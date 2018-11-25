@@ -41,6 +41,9 @@ print(logitfit.summary())
 
 datasetfinal = dataset
 
+#winCoin will be 1 if the team that received the kickoff won
+#spreadCoin will be the point spread from the perspective of the team receiving the kickoff (positive: receiving team is the pregame favorite)
+
 winCoin = []
 spreadCoin = []
 
