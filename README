@@ -7,3 +7,5 @@ The information in the file includes home and away team, point spread from the p
 The NFL_OT_coin.py processes this file and creates a model for the team that wins the overtime controling for the point spread. It builds separate models for time periods 2009-2012 and 2013-2017, since the rules changed starting the 2013 season.
 
 One line conclusion: in this dataset receiving the kickoff does not seem to have a statistically significant impact on winning in OT. Team strength (as captured from the point spread) is significantly correlated with winning in OT.
+
+Please let me know for any questions in the analysis or errors in coding the data. 
