@@ -9,8 +9,8 @@ data = pd.read_csv("NFL-OT.csv")
 
 ## We use only games that ended up with a winner 
 ind = data["homescore"] != data["awayscore"]
-ind20132017 = data["season"] >= 2013
-ind20092012 = data["season"] < 2013
+ind20122017 = data["season"] >= 2012
+ind20092011 = data["season"] < 2012
 
 dataset = data[ind & ind20132017]
 
@@ -25,7 +25,6 @@ for i in dataset.index.tolist():
                 # add the info for the home team
                 tmp = pd.DataFrame([[1,int(dataset["home"][i] == dataset["coin"][i]),dataset["spread"][i],int(dataset["homescore"][i] > dataset["awayscore"][i]),dataset["season"][i]]],columns=["home","coin","spread","win","season"])
                 otData = otData.append(tmp)
-                # add the info for the away team
                 tmp = pd.DataFrame([[0,int(dataset["away"][i] == dataset["coin"][i]),-dataset["spread"][i],int(dataset["homescore"][i] < dataset["awayscore"][i]),dataset["season"][i]]],columns=["home","coin","spread","win","season"])
                 otData = otData.append(tmp)
 
@@ -34,7 +33,7 @@ otData.replace(to_replace={'win' : {'1': 1, '0': 0}}, inplace = True)
 
 logitfit = smf.glm(formula = str(f), data = otData.sample(n=int(np.floor(len(otData)*0.8))),family=sm.families.Binomial()).fit()
 
-print "########################################## Model 2013-2017 ##########################################"
+print "########################################## Model 2012-2017 ##########################################"
 print(logitfit.summary())
 
 
@@ -47,7 +46,6 @@ for i in dataset.index.tolist():
                 # add the info for the home team
                 tmp = pd.DataFrame([[1,int(dataset["home"][i] == dataset["coin"][i]),dataset["spread"][i],int(dataset["homescore"][i] > dataset["awayscore"][i]),dataset["season"][i]]],columns=["home","coin","spread","win","season"])
                 otData = otData.append(tmp)
-                # add the info for the away team
                 tmp = pd.DataFrame([[0,int(dataset["away"][i] == dataset["coin"][i]),-dataset["spread"][i],int(dataset["homescore"][i] < dataset["awayscore"][i]),dataset["season"][i]]],columns=["home","coin","spread","win","season"])
                 otData = otData.append(tmp)
 
@@ -56,7 +54,7 @@ otData.replace(to_replace={'win' : {'1': 1, '0': 0}}, inplace = True)
 
 logitfit = smf.glm(formula = str(f), data = otData,family=sm.families.Binomial()).fit()
 
-print "########################################## Model 2009-2012 ##########################################"
+print "########################################## Model 2009-2013 ##########################################"
 print(logitfit.summary())
 
 dataset = data[ind]
@@ -68,7 +66,6 @@ for i in dataset.index.tolist():
                 # add the info for the home team
                 tmp = pd.DataFrame([[1,int(dataset["home"][i] == dataset["coin"][i]),dataset["spread"][i],int(dataset["homescore"][i] > dataset["awayscore"][i]),dataset["season"][i]]],columns=["home","coin","spread","win","season"])
                 otData = otData.append(tmp)
-                # add the info for the away team
                 tmp = pd.DataFrame([[0,int(dataset["away"][i] == dataset["coin"][i]),-dataset["spread"][i],int(dataset["homescore"][i] < dataset["awayscore"][i]),dataset["season"][i]]],columns=["home","coin","spread","win","season"])
                 otData = otData.append(tmp)
         
