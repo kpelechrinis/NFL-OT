@@ -25,6 +25,7 @@ for i in dataset.index.tolist():
                 # add the info for the home team
                 tmp = pd.DataFrame([[1,int(dataset["home"][i] == dataset["coin"][i]),dataset["spread"][i],int(dataset["homescore"][i] > dataset["awayscore"][i]),dataset["season"][i]]],columns=["home","coin","spread","win","season"])
                 otData = otData.append(tmp)
+                # add the info for the away team
                 tmp = pd.DataFrame([[0,int(dataset["away"][i] == dataset["coin"][i]),-dataset["spread"][i],int(dataset["homescore"][i] < dataset["awayscore"][i]),dataset["season"][i]]],columns=["home","coin","spread","win","season"])
                 otData = otData.append(tmp)
 
@@ -46,6 +47,7 @@ for i in dataset.index.tolist():
                 # add the info for the home team
                 tmp = pd.DataFrame([[1,int(dataset["home"][i] == dataset["coin"][i]),dataset["spread"][i],int(dataset["homescore"][i] > dataset["awayscore"][i]),dataset["season"][i]]],columns=["home","coin","spread","win","season"])
                 otData = otData.append(tmp)
+                # add the info for the away team
                 tmp = pd.DataFrame([[0,int(dataset["away"][i] == dataset["coin"][i]),-dataset["spread"][i],int(dataset["homescore"][i] < dataset["awayscore"][i]),dataset["season"][i]]],columns=["home","coin","spread","win","season"])
                 otData = otData.append(tmp)
 
@@ -66,6 +68,7 @@ for i in dataset.index.tolist():
                 # add the info for the home team
                 tmp = pd.DataFrame([[1,int(dataset["home"][i] == dataset["coin"][i]),dataset["spread"][i],int(dataset["homescore"][i] > dataset["awayscore"][i]),dataset["season"][i]]],columns=["home","coin","spread","win","season"])
                 otData = otData.append(tmp)
+                # add the info for the away team
                 tmp = pd.DataFrame([[0,int(dataset["away"][i] == dataset["coin"][i]),-dataset["spread"][i],int(dataset["homescore"][i] < dataset["awayscore"][i]),dataset["season"][i]]],columns=["home","coin","spread","win","season"])
                 otData = otData.append(tmp)
         
