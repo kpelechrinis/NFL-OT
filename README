@@ -1,0 +1,9 @@
+This repository examines the impact of receiving the kickoff in NFL OT.
+
+The NFL-OT.csv file has the data from 142 NFL games that went to OT from 2009 to 2017 (only regular season). 
+
+The information in the file includes home and away team, point spread from the perspective of the home team (positive: home team favorite, negative: home team underdog), the team that received the kickoff (column "coin") and the total points for the home and away team at the end of the game
+
+The NFL_OT_coin.py processes this file and creates a model for the team that wins the overtime controling for the point spread. It builds separate models for time periods 2009-2012 and 2013-2017, since the rules changed starting the 2013 season.
+
+One line conclusion: in this dataset receiving the kickoff does not seem to have a statistically significant impact on winning in OT. Team strength (as captured from the point spread) is significantly correlated with winning in OT.
