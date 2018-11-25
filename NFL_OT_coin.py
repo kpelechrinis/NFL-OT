@@ -32,5 +32,38 @@ otData.replace(to_replace={'win' : {'1': 1, '0': 0}}, inplace = True)
 
 logitfit = smf.glm(formula = str(f), data = otData.sample(n=int(np.floor(len(otData)*0.8))),family=sm.families.Binomial()).fit()
 
-print "########################################## Model 2012-2017 ##########################################"
+print "########################################## Model A: 2012-2017 ##########################################"
 print(logitfit.summary())
+
+
+
+### Second model. Here every game gives one datapoint and essentially we model the probability that the team that receives the kickoff at OT wins the game. The intercept of this model will essentially capture any impact of having the ball first 
+
+datasetfinal = dataset
+
+winCoin = []
+spreadCoin = []
+
+for i in datasetfinal.index.tolist():
+        if datasetfinal["homescore"][i] > datasetfinal["awayscore"][i]:
+                winteam = datasetfinal["home"][i]
+        else:
+                winteam = datasetfinal["away"][i]
+        if datasetfinal["coin"][i] == winteam:
+                winCoin.append(1)
+        else:
+                winCoin.append(0)
+        if datasetfinal["coin"][i] == datasetfinal["home"][i]:
+                spreadCoin.append(datasetfinal["spread"][i])
+        else:
+                spreadCoin.append(-datasetfinal["spread"][i])
+
+datasetfinal["winCoin"] = winCoin
+datasetfinal["spreadCoin"] = spreadCoin
+
+f = "winCoin~spreadCoin"
+
+logitfit = smf.glm(formula = str(f), data = datasetfinal,family=sm.families.Binomial()).fit()
+print "########################################## Model B: 2012-2017 ##########################################"
+print(logitfit.summary())
+
